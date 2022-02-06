@@ -1,16 +1,18 @@
+import React, { useState } from 'react';
 import '../styles/events.css';
 
-const Events = props => {
+const Events = () => {
+  const [condition, setCondition] = useState(true);
+  const onConditional = () => setCondition(!condition);
+
   return (
     <>
-      <li
-        onClick={props.onComplete}
-        className={`todo-item todo-item-p ${props.completed && 'todo-item-p--complete'}`}
-      >
-        {props.text}
-      </li>
+      <button onClick={() => onConditional()}>
+        Add item
+      </button>
+      <p>State value is {condition.toString()}</p>
     </>
   );
 }
- 
+
 export default Events;
