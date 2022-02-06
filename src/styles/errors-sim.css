@@ -1,0 +1,10 @@
+.error-buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+button {
+  width: 10rem;
+  margin: 0.5rem 0;
+}
