@@ -1,0 +1,14 @@
+.todo-item {
+  margin: 1rem 0;
+  font-size: 24px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.todo-item-p {
+  font-size: 18px;
+}
+
+.todo-item-p--complete {
+  text-decoration: line-through;
+}
