@@ -8,27 +8,22 @@ const initialCart = [
 
 const CartApp = () => {
   const [cart, setCart] = useState(initialCart);
-  const deleteProduct = (productId) => {
+
+  const deleteProduct = productId => {
     const changedCart = cart.filter(product => product.id !== productId );
     setCart(changedCart);
   }
 
   const addProduct = newProduct => {
     newProduct.id = Date.now();
-    const changedCart = [
-        newProduct,
-        ...cart,
-    ];
-
+    const changedCart = [newProduct, ...cart,];
     setCart(changedCart);
   }
     
   const updateProduct = editProduct => {
     const changedCart = cart.map(product => (
-      product.id === editProduct.id
-      ? editProduct
-      : product
-    ));
+      product.id === editProduct.id ? editProduct : product)
+    );
     setCart(changedCart);
   }
 
