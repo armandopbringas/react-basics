@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import getUser from '../helpers/getUsers';
+import getPosts from '../helpers/get-posts';
 
 const FetchCard = () => {
   const [user, setUser] = useState({});
+  const [posts, setPosts] = useState([]);
 
   const updateUser = () => {
     getUser()
@@ -11,18 +13,33 @@ const FetchCard = () => {
     });
   }
 
+  const updatePosts = () => {
+    getPosts(user.id)
+      .then(newPosts => {
+        setPosts(newPosts);
+    });
+  }
+
   useEffect(() => {
     updateUser();
   }, []);
 
+  useEffect(() => {
+    if(user?.id) updatePosts();
+  }, [user, updatePosts]);
+
   return (
-    <div>
+    <>
       <button onClick={updateUser}>
         Another User
       </button>
       <h1>{user.name}</h1>
       <h2>{user.email}</h2>
-    </div>
+      <h2>Posts - user: {user.id}</h2>
+      <ul>
+        {posts.map(post => <li key={post.id}>{post.title}</li>)}
+      </ul>
+    </>
   );
 }
 

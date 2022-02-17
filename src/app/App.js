@@ -1,6 +1,7 @@
 import Header from '../components/header';
 import LifCycle from '../components/life-cycle';
 import FetchCard from '../components/fetch-card';
+import BpViewer from '../components/bp-viewer';
 import './App.css';
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
         <LifCycle />
         <hr />
         <FetchCard />
+        <hr />
+        <BpViewer />
       </main>
     </>
   );
