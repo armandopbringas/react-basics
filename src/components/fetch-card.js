@@ -6,26 +6,12 @@ const FetchCard = () => {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
 
-  const updateUser = () => {
-    getUser()
-      .then((newUser) => {
-        setUser(newUser);
-    });
-  }
+  const updateUser = () => getUser().then(newUser => setUser(newUser));
+  const updatePosts = () => getPosts(user.id).then(newPosts => setPosts(newPosts));
 
-  const updatePosts = () => {
-    getPosts(user.id)
-      .then(newPosts => {
-        setPosts(newPosts);
-    });
-  }
-
+  useEffect(() => updateUser(), []);
   useEffect(() => {
-    updateUser();
-  }, []);
-
-  useEffect(() => {
-    if(user?.id) updatePosts();
+    if (user?.id) updatePosts();
   }, [user, updatePosts]);
 
   return (
