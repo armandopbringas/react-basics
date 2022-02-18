@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import getUser from '../helpers/getUsers';
 import getPosts from '../helpers/get-posts';
 
 const FetchCard = () => {
-  const [user, setUser] = useState({});
-  const [posts, setPosts] = useState([]);
+  const [ user, setUser ] = useState({});
+  const [ posts, setPosts ] = useState([]);
 
   const updateUser = () => getUser().then(newUser => setUser(newUser));
-  const updatePosts = () => getPosts(user.id).then(newPosts => setPosts(newPosts));
+  const updatePosts = useCallback(() => getPosts(user.id).then(newPosts => setPosts(newPosts)), [user.id]);
 
   useEffect(() => updateUser(), []);
-  useEffect(() => {
-    if (user?.id) updatePosts();
-  }, [user, updatePosts]);
+  useEffect(() => { if (user?.id) updatePosts() }, [ user, updatePosts ]);
 
   return (
     <>
