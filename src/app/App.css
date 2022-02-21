@@ -4,3 +4,7 @@
   max-width: 768px;
   text-align: center;
 }
+
+button {
+  margin: 0 0.5rem;
+}
