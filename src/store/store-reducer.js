@@ -1,3 +1,10 @@
+const types = {
+  authLogin: 'auth - login',
+  authLogout: 'auth - logout',
+  productDeleteAll: 'product - delete all',
+  productChange: 'product - change'
+}
+
 const initialStore = {
   user: { id: 1, name: 'Buzz' },
   products: [
@@ -8,10 +15,13 @@ const initialStore = {
 
 const storeReducer = (state, action) => {
   switch(action.type) {
-    default:
-      return state;
+    case types.authLogout: return { ...state, user: null }
+    case types.authLogin: return { ...state, user: action.payload }
+    case types.productChange: return { ...state, products: [{ id: 3, title: 'Product #3' }] }
+    case types.productDeleteAll: return { ...state, products: [] }
+    default: return state;
   }
 }
 
-export { initialStore }
+export { initialStore, types }
 export default storeReducer;
